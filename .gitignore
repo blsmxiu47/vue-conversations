@@ -1,1 +1,4 @@
+__pycache__
+*.pyc
 conversations_env
+data/news/googlenews_scrape/.scrapy
