@@ -50,9 +50,7 @@ print(len(query_results))
 # print(test)
 
 for result in query_results[:2]:
-    # image = a.figure.img
     article = result.select('article')[0]
-    # title = result.select('article h3 > a')[0].get_text()
     title = article.select('article h3 > a')[0].get_text()
     link = article.find('a', href=True)['href']
     subheading = article.select('div > div')[0]
