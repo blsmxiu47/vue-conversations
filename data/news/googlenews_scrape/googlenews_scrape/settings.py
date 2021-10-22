@@ -13,6 +13,15 @@ SPIDER_MODULES = ['googlenews_scrape.spiders']
 NEWSPIDER_MODULE = 'googlenews_scrape.spiders'
 
 
+CONNECTION_STRING = "{drivername}://{user}:{password}@{host}:{port}/{database}".format(
+    drivername="postgresql",
+    user="USER",
+    password="PASSWORD", 
+    host="localhost",
+    port="PORT",
+    database="DBNAME",
+)
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'googlenews_scrape (+http://www.yourdomain.com)'
 
