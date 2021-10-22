@@ -7,7 +7,8 @@ import googlenews_scrape.items as items
 class GooglenewsSpider(scrapy.Spider):
     name = "googlenews"
     allowed_domains = ['news.google.com']
-    start_urls = ['https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en']
+    # start_urls = ['https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en']
+    start_urls = ['https://news.google.com/search?q=Wildfires%20when%3A1d&hl=en-US&gl=US&ceid=US%3Aen']
 
     def parse(self, response):
         selector = Selector(response)
@@ -19,19 +20,20 @@ class GooglenewsSpider(scrapy.Spider):
             
             item['title'] = article.css('h3 > a::text').get()
 
-            subheading = article.select('div > div')[0]
-            item['source'] = subheading.find('a').text
-            item['time'] = subheading.find('time')['datetime']
+            subheading = article.css('div > div')[0]
+            item['source'] = subheading.css('a::text').get()
+            item['time'] = subheading.css('time').attrib['datetime']
 
             article_href = article.css('a').attrib['href']
-            item['link'] = article_href
 
             if article_href:
                 try:
-                    content = scrapy.Request(
-                        url=response.urljoin(article_href)
-                    ).body
-                    item['content'] = str(content)
+                    # content_request = scrapy.Request(
+                    #     url=response.urljoin(article_href)
+                    # )
+                    content_response = requests.get(response.urljoin(article_href))
+                    item['content_url'] = content_response.url
+                    item['content'] = content_response.content # In Bytes, for String use str()
                 except requests.exceptions.HTTPError as errh:
                     print("Http Error:",errh)
                 except requests.exceptions.ConnectionError as errc:
@@ -43,7 +45,11 @@ class GooglenewsSpider(scrapy.Spider):
                 except requests.exceptions.RequestException as err:
                     print("Sorry.. Some request exception occurred",err)
             else:
+                item['content_url'] = None
                 item['content'] = None
+
+            # print(item)
+            yield item
                 
 
             # For Google Search | News Tab version
