@@ -10,5 +10,5 @@ class GooglenewsScrapeItem(scrapy.Item):
     title = scrapy.Field()
     source = scrapy.Field()
     time = scrapy.Field()
-    link = scrapy.Field()
+    content_url = scrapy.Field()
     content = scrapy.Field()
