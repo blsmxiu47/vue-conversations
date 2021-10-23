@@ -1,4 +1,5 @@
 from dagster import op
+from scraping import CrawlSources
 
 
 @op
@@ -10,3 +11,8 @@ def hello():
     https://docs.dagster.io/overview/<TODO:INSERT OP URL>
     """
     return "Hello, Dagster!"
+
+
+@op
+def scrape_googlenews():
+    CrawlSources()
