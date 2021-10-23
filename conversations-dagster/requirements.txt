@@ -2,5 +2,6 @@ beautifulsoup4==4.10.0
 dagit==0.13.0
 dagster==0.13.0
 lxml==4.6.3
+python-dotenv==0.19.1
 requests==2.26.0
 selenium==4.0.0

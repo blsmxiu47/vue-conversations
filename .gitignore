@@ -1,5 +1,6 @@
 __pycache__
 *.pyc
+.env
 conversations_env
 data/news/googlenews_scrape/.scrapy
 */logs
@@ -7,3 +8,4 @@ data/news/googlenews_scrape/.scrapy
 conversations-dagster/history
 conversations-dagster/schedules
 conversations-dagster/storage
+
