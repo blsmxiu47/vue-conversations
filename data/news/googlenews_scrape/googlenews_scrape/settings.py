@@ -1,11 +1,5 @@
 # Scrapy settings for googlenews_scrape project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+import settings
 
 BOT_NAME = 'googlenews_scrape'
 
@@ -15,11 +9,11 @@ NEWSPIDER_MODULE = 'googlenews_scrape.spiders'
 
 CONNECTION_STRING = "{drivername}://{user}:{password}@{host}:{port}/{database}".format(
     drivername="postgresql",
-    user="USER",
-    password="PASSWORD", 
-    host="localhost",
-    port="PORT",
-    database="DBNAME",
+    user=settings.DB_USER,
+    password=settings.DB_PASSWORD, 
+    host=settings.DB_HOST,
+    port=settings.DB_PORT,
+    database=settings.DB_NAME,
 )
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -71,9 +65,9 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'googlenews_scrape.pipelines.GooglenewsScrapePipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'googlenews_scrape.pipelines.GooglenewsScrapePipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
