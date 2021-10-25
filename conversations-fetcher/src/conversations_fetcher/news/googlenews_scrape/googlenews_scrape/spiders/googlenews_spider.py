@@ -13,7 +13,7 @@ class GooglenewsSpider(scrapy.Spider):
 
     def parse(self, response):
         # dev tmp
-        print('start parse')
+        print('googlenews - start parse')
         selector = Selector(response)
         item  = items.GooglenewsScrapeItem()
 
@@ -52,7 +52,7 @@ class GooglenewsSpider(scrapy.Spider):
                 item['content'] = None
 
             # dev tmp
-            print(item)
+            # print(item)
             yield item
                 
 

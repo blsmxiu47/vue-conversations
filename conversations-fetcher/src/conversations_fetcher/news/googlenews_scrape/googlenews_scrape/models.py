@@ -1,8 +1,7 @@
-from sqlalchemy import create_engine, MetaData, Column, Integer, String, Date, Text
+from sqlalchemy import create_engine, MetaData, Column, Integer, String, Text
+from sqlalchemy.sql.sqltypes import DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from scrapy.utils.project import get_project_settings
-from sqlalchemy.sql.expression import table
-from sqlalchemy.sql.sqltypes import DateTime
 
 DeclarativeBase = declarative_base()
 
@@ -25,9 +24,9 @@ def create_table(engine):
 class ConversationsBase(DeclarativeBase):
     __tablename__ = "googlenews"
     
-    id = Column(Integer, primary_key=True)
-    title = Column('title', String(128))
-    source = Column('source', String(128))
-    time = Column('time', DateTime(timezone=False))
+    id = Column(Integer)
+    title = Column('title', String(128), primary_key=True)
+    source = Column('source', String(128), primary_key=True)
+    time = Column('time', DateTime(timezone=False), primary_key=True)
     content_url = Column('content_url', String(256))
     content = Column('content', Text())
