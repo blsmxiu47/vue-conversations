@@ -1,5 +1,5 @@
-# Scrapy settings for googlenews_scrape project
-import settings
+# Scrapy settings for conversations project
+from conversations_fetcher import settings
 
 BOT_NAME = 'googlenews_scrape'
 

@@ -12,6 +12,8 @@ class GooglenewsSpider(scrapy.Spider):
     start_urls = ['https://news.google.com/search?q=Wildfires%20when%3A1d&hl=en-US&gl=US&ceid=US%3Aen']
 
     def parse(self, response):
+        # dev tmp
+        print('start parse')
         selector = Selector(response)
         item  = items.GooglenewsScrapeItem()
 
@@ -49,7 +51,8 @@ class GooglenewsSpider(scrapy.Spider):
                 item['content_url'] = None
                 item['content'] = None
 
-            # print(item)
+            # dev tmp
+            print(item)
             yield item
                 
 
