@@ -1,6 +1,7 @@
 from dagster import op
-from scraping import CrawlSources
 
+# local src directory (reorg soon)
+from conversations_fetcher.src.conversations_fetcher.news.googlenews_scrape.crawl_sources import crawl
 
 @op
 def hello():
@@ -15,4 +16,4 @@ def hello():
 
 @op
 def scrape_googlenews():
-    CrawlSources()
+    crawl('googlenews')

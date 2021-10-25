@@ -1,6 +1,6 @@
 from dagster import graph
 
-from conversations_dagster.ops.fetch_data import scrape_googlenews
+from ops.fetch_data import scrape_googlenews
 
 @graph
 def scrape():
@@ -12,4 +12,4 @@ def scrape():
     """
     scrape_googlenews()
 
-say_hello_job = scrape.to_job()
+scrape_job = scrape.to_job()

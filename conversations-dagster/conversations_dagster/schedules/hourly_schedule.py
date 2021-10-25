@@ -1,9 +1,9 @@
 from dagster import schedule
 
-from conversations_dagster.graphs.say_hello import say_hello_job
+from conversations_dagster.graphs.scraping import scrape
 
 
-@schedule(cron_schedule="0 * * * *", job=say_hello_job, execution_timezone="US/Central")
-def my_hourly_schedule(_context):
+@schedule(cron_schedule="0 * * * *", job=scrape, execution_timezone="US/Pacific")
+def hourly_schedule(_context):
     run_config = {}
     return run_config

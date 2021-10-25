@@ -1,9 +1,11 @@
+import sys
 from dagster import repository
 
-from conversations_dagster.graphs.say_hello import say_hello_job
-from conversations_dagster.schedules.my_hourly_schedule import my_hourly_schedule
-from conversations_dagster.sensors.my_sensor import my_sensor
+from conversations_dagster.graphs.scraping import scrape
+from conversations_dagster.schedules.hourly_schedule import hourly_schedule
+# from .sensors.sensor import sensor
 
+sys.path.append("C:\\Users\\weswa\\Projects\\vue-conversations\\conversations-dagster")
 
 @repository
 def conversations_dagster():
@@ -13,8 +15,8 @@ def conversations_dagster():
     For hints on building your Dagster repository, see our documentation overview on Repositories:
     https://docs.dagster.io/overview/repositories-workspaces/repositories
     """
-    jobs = [say_hello_job]
-    schedules = [my_hourly_schedule]
-    sensors = [my_sensor]
+    jobs = [scrape]
+    schedules = [hourly_schedule]
+    # sensors = [sensor]
 
-    return jobs + schedules + sensors
+    return jobs + schedules
