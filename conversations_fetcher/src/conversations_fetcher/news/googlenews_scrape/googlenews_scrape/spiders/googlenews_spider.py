@@ -9,7 +9,8 @@ class GooglenewsSpider(scrapy.Spider):
     name = "googlenews"
     allowed_domains = ['news.google.com']
     # start_urls = ['https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en']
-    start_urls = ['https://news.google.com/search?q=Wildfires%20when%3A1d&hl=en-US&gl=US&ceid=US%3Aen']
+    # Set to hourly runs
+    start_urls = ['https://news.google.com/search?q=Wildfires%20when%3A1h&hl=en-US&gl=US&ceid=US%3Aen']
 
     def parse(self, response):
         # dev tmp
@@ -18,7 +19,7 @@ class GooglenewsSpider(scrapy.Spider):
         item  = items.GooglenewsScrapeItem()
 
         query_results = selector.css('main > c-wiz > div:nth-of-type(1) > div')
-        for result in query_results[:2]:
+        for result in query_results:
             article = result.css('article')[0]
             
             item['title'] = article.css('h3 > a::text').get()
