@@ -1,15 +1,15 @@
 from dagster import graph
 
-from conversations_dagster.ops.hello import hello
+from conversations_dagster.ops.fetch_data import scrape_googlenews
 
 @graph
-def say_hello():
+def scrape():
     """
     A graph definition. This example graph has a single op.
 
     For more hints on writing Dagster graphs, see our documentation overview on Graphs:
     https://docs.dagster.io/concepts/ops_graphs/graphs
     """
-    hello()
+    scrape_googlenews()
 
-say_hello_job = say_hello.to_job()
+say_hello_job = scrape.to_job()
