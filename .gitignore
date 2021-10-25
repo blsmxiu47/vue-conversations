@@ -2,10 +2,9 @@ __pycache__
 *.pyc
 .env
 conversations_env
-data/news/googlenews_scrape/.scrapy
+.scrapy
 */logs
 .telemetry
 conversations-dagster/history
 conversations-dagster/schedules
 conversations-dagster/storage
-
